@@ -10,12 +10,13 @@ const ProductsList = lazy(() => import('@/features/productsList'));
 const SearchResultsPage = () => {
   const { searchValue } = useParams<{ searchValue: string }>();
 
-  if (!searchValue) return <Navigate to={'/'} replace />
-  const dataQuery = useFetchFilterProducts({per_page: 20, search: searchValue});
+  const dataQuery = useFetchFilterProducts({per_page: 20, search: searchValue || ''});
   const unifiedDataQuery = useUnifiedQueryState<ProductFilterResponse, Product>(
     dataQuery,
     (data) => data.products,
-  )
+  );
+
+  if (!searchValue) return <Navigate to={'/'} replace />;
 
   const {fetchNextPage, isFetching, hasNextPage} = dataQuery;
 

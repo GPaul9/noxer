@@ -1,7 +1,5 @@
 import styles from './CategoriesList.module.scss';
 
-import { MainData } from '@/shared/types/mainData';
-import { UseQueryResult } from '@tanstack/react-query';
 import { MessageBlock } from '@/shared/ui';
 import { CategoriesCard } from '../CategoriesCard/CategoriesCard';
 import { CategoriesListSkeleton } from './CategoriesListSkeleton';

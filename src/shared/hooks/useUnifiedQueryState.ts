@@ -2,19 +2,19 @@ import { UseQueryResult, UseInfiniteQueryResult, InfiniteData } from '@tanstack/
 import { unifiedQueryState } from '../types/unifiedQuery';
 
 const isInfiniteQuery = <T>(
-  query: UseQueryResult<T> | UseInfiniteQueryResult<InfiniteData<T>>
+  query: UseQueryResult<T> | UseInfiniteQueryResult<InfiniteData<T>>,
 ): query is UseInfiniteQueryResult<InfiniteData<T>> => {
   return (
     typeof query === 'object' &&
     query !== null &&
     'fetchNextPage' in query &&
     typeof (query as any).fetchNextPage === 'function'
-  )
+  );
 };
 
 export function useUnifiedQueryState<T, TItem>(
   query: UseQueryResult<T> | UseInfiniteQueryResult<InfiniteData<T>>,
-  extractData: (data: T) => TItem[]
+  extractData: (_data: T) => TItem[],
 ): unifiedQueryState<TItem[]> {
   const baseState: unifiedQueryState<TItem[]> = {
     data: [],

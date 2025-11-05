@@ -1,7 +1,5 @@
 import styles from './ProductsList.module.scss';
 
-import { UseQueryResult } from '@tanstack/react-query';
-import { MainData } from '@/shared/types/mainData';
 import { MessageBlock, ProductCard } from '@/shared/ui';
 import { ProductsListSkeleton } from './ProductsListSkeleton';
 import { unifiedQueryState } from '@/shared/types/unifiedQuery';

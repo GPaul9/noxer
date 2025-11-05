@@ -7,16 +7,15 @@ import { SearchDropdownCard } from './SearchDropdownCard';
 import { useCallback, useEffect, useMemo } from 'react';
 import { unifiedQueryState } from '@/shared/types/unifiedQuery';
 import { Product } from '@/shared/types/products';
-import { Link } from 'react-router-dom';
 
 type Tprops = {
   dataQuery: unifiedQueryState<Product[]>;
   searchValue: string;
-  setSearchValue: (value: string) => void;
+  setSearchValue: (_value: string) => void;
 }
 
 export const SearchDropdown = ({ dataQuery, searchValue, setSearchValue }: Tprops) => {
-  const { data, isLoading, hasNextPage} = dataQuery;
+  const { data, isLoading } = dataQuery;
 
   useEffect(() => {
     window.scrollTo(0, 0);

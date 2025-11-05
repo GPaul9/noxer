@@ -20,5 +20,5 @@ export const Pagination = ({ fetchNextPage, isFetching, hasNextPage }: TProps) =
         Показать еще
       </button>
     </div>
-  )
+  );
 };

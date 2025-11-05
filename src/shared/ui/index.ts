@@ -1,4 +1,4 @@
-export * from './Header'
+export * from './Header';
 export * from './MainLayout';
 export * from './MessageBlock';
 export * from './PageLoader';
