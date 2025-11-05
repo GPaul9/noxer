@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/index-CKnwtgL1.js","assets/index-b0filKha.js","assets/index-L6vxEJYw.css","assets/MessageBlock-CBR_p3We.js","assets/MessageBlock-CoTCoY3t.css","assets/index-D6hN7wQl.css"])))=>i.map(i=>d[i]);
+import{u as r,a as o,j as e,r as i,_ as u}from"./index-b0filKha.js";const n=i.lazy(()=>u(()=>import("./index-CKnwtgL1.js"),__vite__mapDeps([0,1,2,3,4,5]))),d=()=>{const t=r(),a=o(t,s=>s.categories);return e.jsx("div",{className:"container",children:e.jsx(n,{dataQuery:a})})};export{d as default};
