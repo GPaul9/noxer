@@ -3,25 +3,25 @@ import styles from './SearchDropdown.module.scss';
 import SearchIcon from '@/assets/serach-icon.svg?react';
 import { popularSeek } from './popularSeek';
 import { useLockBodyScroll } from '@/shared/hooks/useLockBodyScroll';
-import { UseQueryResult } from '@tanstack/react-query';
-import { FilterResponse } from '@/shared/types/products';
 import { SearchDropdownCard } from './SearchDropdownCard';
 import { useCallback, useEffect, useMemo } from 'react';
+import { unifiedQueryState } from '@/shared/types/unifiedQuery';
+import { Product } from '@/shared/types/products';
+import { Link } from 'react-router-dom';
 
 type Tprops = {
-  dataQuery: UseQueryResult<FilterResponse>;
+  dataQuery: unifiedQueryState<Product[]>;
   searchValue: string;
   setSearchValue: (value: string) => void;
 }
 
 export const SearchDropdown = ({ dataQuery, searchValue, setSearchValue }: Tprops) => {
-  const { data, isLoading } = dataQuery;
+  const { data, isLoading, hasNextPage} = dataQuery;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   useLockBodyScroll();
-
 
   const handleSelectPopular = useCallback((item: string) => {
     setSearchValue(item);
@@ -59,9 +59,9 @@ export const SearchDropdown = ({ dataQuery, searchValue, setSearchValue }: Tprop
   return (
     <div className={styles.dropdown}>
       <div className="container">
-        {data && data.products.length > 0 ?
+        {data && data.length > 0 ?
           <ul className={styles['dropdown__result-list']}>
-            {data.products.map(item => (
+            {data.map(item => (
               <li key={item.id} className={styles['dropdown__result-item']}>
                 <SearchDropdownCard dataProduct={item} />
               </li>

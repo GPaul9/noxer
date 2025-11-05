@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { SearchDropdown } from '../SearchDropdown';
 import SearchIcon from '@/assets/serach-icon.svg?react';
 import { useFetchFilterProducts } from '@/shared/hooks/useFetchData';
-import { useDebounce } from '@/shared/utils/useDebounce';
+import { useDebounce } from '@/shared/hooks/useDebounce';
+import { useUnifiedQueryState } from '@/shared/hooks/useUnifiedQueryState';
+import { Product, ProductFilterResponse } from '@/shared/types/products';
 
 export const SearchBar = () => {
   const [value, setValue] = useState('');
@@ -12,7 +14,11 @@ export const SearchBar = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
-  const dataQuery = useFetchFilterProducts(1, 8, useDebounce(value, 400));
+  const dataQuery = useFetchFilterProducts({per_page: 8, search: useDebounce(value, 400)});
+  const unifiedDataQuery = useUnifiedQueryState<ProductFilterResponse, Product>(
+    dataQuery,
+    (data) => data.products,
+  );
 
   const handleFocus = () => {
     inputRef.current?.focus();
@@ -63,7 +69,7 @@ export const SearchBar = () => {
         }
       </form>
 
-      {isFocus && <SearchDropdown dataQuery={dataQuery} searchValue={value} setSearchValue={setValue}/>}
+      {isFocus && <SearchDropdown dataQuery={unifiedDataQuery} searchValue={value} setSearchValue={setValue}/>}
     </search>
   );
 };

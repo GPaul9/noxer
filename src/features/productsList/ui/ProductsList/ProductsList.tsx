@@ -4,9 +4,11 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { MainData } from '@/shared/types/mainData';
 import { MessageBlock, ProductCard } from '@/shared/ui';
 import { ProductsListSkeleton } from './ProductsListSkeleton';
+import { unifiedQueryState } from '@/shared/types/unifiedQuery';
+import { Product } from '@/shared/types/products';
 
 type TProps = {
-  dataQuery: UseQueryResult<MainData>
+  dataQuery: unifiedQueryState<Product[]>;
 }
 
 const ProductsList = ({dataQuery}: TProps) => {
@@ -14,14 +16,12 @@ const ProductsList = ({dataQuery}: TProps) => {
 
   if (isLoading) return <ProductsListSkeleton />;
   if (isError) return <MessageBlock message='Не удалось получить список :(' onRefetch={refetch}/>;
-  if (!data?.products) return <MessageBlock message='Список пуст' />;
-
-  const products = data?.products;
+  if (!data) return <MessageBlock message='Список пуст' />;
 
   return (
     <section className={styles.products}>
       <ul className={styles.products__list}>
-        {products.map(product => (
+        {data.map(product => (
           <li key={product.id} className={styles.product__item}>
             <ProductCard productData={product}/>
           </li>

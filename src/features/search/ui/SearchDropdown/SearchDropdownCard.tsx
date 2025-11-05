@@ -10,7 +10,7 @@ type TProps = {
 }
 
 export const SearchDropdownCard = ({ dataProduct }: TProps) => {
-  const {id, images, name, price} = dataProduct;
+  const {id, images, name, price, old_price: oldPrice} = dataProduct;
 
   const mainImageUrl: string = images.find(image => image.MainImage === true)?.Image_URL ?? placeholderImg;
 
@@ -21,7 +21,12 @@ export const SearchDropdownCard = ({ dataProduct }: TProps) => {
       </div>
       <div className={styles['dropdown-card__details']}>
         <h4 className={styles['dropdown-card__title']}>{name}</h4>
-        <strong className={styles['dropdown-card__price']}>{formatRub(price)}</strong>
+        <div className={styles['dropdown-card__price-wrapper']}>
+          <strong className={styles['dropdown-card__price']}>{formatRub(price)}</strong>
+          {oldPrice !== null &&
+            <strong className={styles['dropdown-card__old-price']}>{formatRub(oldPrice)}</strong>
+          }
+        </div>
       </div>
     </Link>
   );

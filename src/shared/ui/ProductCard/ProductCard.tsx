@@ -32,11 +32,16 @@ export const ProductCard = ({productData}: TProps) => {
         </div>
 
         <div className={styles.card__wrapper}>
-          <strong className={styles.card__price}>{formatRub(productData.price)}</strong>
+          <div className={styles['card__price-wrapper']}>
+            <strong className={styles.card__price}>{formatRub(productData.price)}</strong>
+            {productData.old_price !== null &&
+              <strong className={styles['card__old-price']}>{formatRub(productData.old_price)}</strong>
+            }
+          </div>
           <h3 className={styles.card__title}>{productData.name}</h3>
         </div>
       </div>
-      <Link to={`/:${productData.id}`} className={styles.card__link}>Подробнее</Link>
+      <Link to={`/${productData.id}`} className={styles.card__link}>Подробнее</Link>
 
       <ProductCardMarkers marks={productData.marks}/>
     </article>

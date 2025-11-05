@@ -20,12 +20,17 @@ export type Product = {
   images: Image[];
   marks: ProductMark[];
   name: string;
-  old_price: string | null;
+  old_price: number | null;
   price: number;
 };
 
+export type ProductFilterParams = {
+  page: number;
+  per_page: number;
+  search: string;
+}
 
-export type FilterResponse = {
+export type ProductFilterResponse = {
   filters: object;
   pagination: Pagination;
   products: Product[];

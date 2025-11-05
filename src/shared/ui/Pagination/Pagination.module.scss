@@ -1,0 +1,38 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+@use '@/styles/typography' as *;
+
+
+.pagination {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+
+
+  &__button {
+    padding: 15px 40px;
+    border: 2px solid $color-bg-secondary;
+    border-radius: 30px;
+    background-color: $color-bg-light;
+    color: $color-content-primary;
+
+    @include tag1;
+
+    &:hover {
+      background-color: $color-bg-secondary;
+      color: $color-content-secondary;
+    }
+
+    &_loading {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        margin-left: -26px;
+        opacity: 0.5;
+        @include loader(20px, 3px);
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@use '@/styles/mixins' as *;
+
+.categories {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 4px;
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+  }
+}

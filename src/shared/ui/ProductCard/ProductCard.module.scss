@@ -38,12 +38,29 @@
     padding: 0 5px;
   }
 
-  &__price {
-    display: block;
+  &__price-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin: 0;
     margin-bottom: 2px;
-
     @include sub2;
+  }
+
+  &__old-price {
+    position: relative;
+    color: rgba($color-content-primary, 0.5);
+
+    &::before {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 50%;
+      transform: rotate(-20deg);
+      background-color: rgba($color-content-primary, 0.7);
+      width: 100%;
+      height: 1px;
+    }
   }
 
   &__title {

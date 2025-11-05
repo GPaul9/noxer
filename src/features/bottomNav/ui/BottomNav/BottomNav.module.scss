@@ -26,8 +26,9 @@
   }
 
   &__icon {
-    color: inherit;
+    flex-shrink: 1;
     width: 21px;
     height: 21px;
+    color: inherit;
   }
 }
